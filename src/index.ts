@@ -1,8 +1,6 @@
-import express, { Request, Response, NextFunction, Application } from 'express';
+import express, { Request, Response, Application } from 'express';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
-
-const x = 500;
 
 // dotenv config
 dotenv.config({ path: path.resolve(__dirname, '../config/config.env') });
@@ -10,9 +8,12 @@ dotenv.config({ path: path.resolve(__dirname, '../config/config.env') });
 const app: Application = express();
 
 // Routes
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World');
-});
+app.get(
+  ' / ',
+  (req: Request, res: Response): Response => {
+    return res.send('Hello World');
+  },
+);
 
 // Running app on PORT
 const PORT: number = parseInt(`${process.env.PORT}`, 10) || 5001;

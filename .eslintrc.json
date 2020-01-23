@@ -1,5 +1,6 @@
 {
   "extends": [
+    "airbnb",
     "prettier",
     "prettier/@typescript-eslint",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -8,9 +9,14 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2018,
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "."
   },
+  "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "no-unused-vars": "warn",
+    "no-console": "off"
   }
 }

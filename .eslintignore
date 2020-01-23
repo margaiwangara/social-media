@@ -1,0 +1,5 @@
+.gitignore
+*.svg
+*.json
+.prettierrc
+*.env

@@ -20,5 +20,18 @@
   "bugs": {
     "url": "https://github.com/margaiwangara/social-media/issues"
   },
-  "homepage": "https://github.com/margaiwangara/social-media#readme"
+  "homepage": "https://github.com/margaiwangara/social-media#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.9"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/mongoose": "^5.5.43",
+    "@types/node": "^13.1.8",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  }
 }

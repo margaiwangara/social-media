@@ -1,0 +1,24 @@
+{
+  "name": "social-media",
+  "version": "1.0.0",
+  "description": "Simple social media application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/margaiwangara/social-media.git"
+  },
+  "keywords": [
+    "express",
+    "socialmedia",
+    "api"
+  ],
+  "author": "Margai Wangara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/margaiwangara/social-media/issues"
+  },
+  "homepage": "https://github.com/margaiwangara/social-media#readme"
+}

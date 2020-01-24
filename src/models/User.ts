@@ -1,4 +1,5 @@
-import { Schema, Model, model } from 'mongoose';
+import * as bcrypt from 'bcryptjs';
+import { Schema, Model, model, HookNextFunction } from 'mongoose';
 import IUserModel from '../interfaces/user';
 
 const userSchema: Schema = new Schema({
@@ -32,6 +33,17 @@ const userSchema: Schema = new Schema({
   dateCreated: {
     type: Date,
     default: Date.now
+  }
+});
+
+userSchema.pre('save', async function(next: HookNextFunction) {
+  try {
+    const password: string = this.get('password');
+    const salt: string = await bcrypt.genSalt(10);
+    this.set('password', await bcrypt.hash(password, salt));
+    next();
+  } catch (error) {
+    next(error);
   }
 });
 

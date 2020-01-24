@@ -4,8 +4,10 @@
   "description": "Simple social media application",
   "main": "index.js",
   "scripts": {
-    "server": "node build/index.js",
-    "dev": "nodemon src/index.ts",
+    "start": "node build/index.js",
+    "server": "nodemon src/index.ts",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "build": "tsc -p ."
   },
@@ -26,6 +28,8 @@
   "homepage": "https://github.com/margaiwangara/social-media#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "concurrently": "^5.0.2",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

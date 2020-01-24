@@ -1,6 +1,8 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
+import User from './User';
+import Post from './Post';
 
-const config: object = {
+const mongoConfig: object = {
   useFindAndModify: true,
   useCreateIndex: true,
   useNewUrlParser: true,
@@ -8,8 +10,10 @@ const config: object = {
 };
 
 mongoose
-  .connect(`${process.env.MONGO_URI}`, config)
+  .connect(`${process.env.MONGO_URI}`, mongoConfig)
   .then(conn =>
     console.log(`MongoDB Connected: ${(conn.connection as any).host}`)
   )
   .catch(error => console.log(error));
+
+export { User, Post };

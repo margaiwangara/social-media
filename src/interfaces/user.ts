@@ -5,6 +5,7 @@ interface IUserModel extends Document {
   surname?: string;
   email: string;
   password: string;
+  dateCreated: Date;
 }
 
 export default IUserModel;

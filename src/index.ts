@@ -1,7 +1,8 @@
-import express, { Application } from 'express';
+import express, { Application, Request, Response, NextFunction } from 'express';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import errorMiddleware from './middleware/errors';
+import authRoutes from './routes/auth';
 
 // dotenv config
 dotenv.config({ path: path.resolve(__dirname, '../config/config.env') });
@@ -11,7 +12,15 @@ const app: Application = express();
 // Middleware
 app.use(express.json());
 
+// Routes
+app.use('/api/auth', authRoutes);
+
 // Error Handling
+app.use(function(req: Request, res: Response, next: NextFunction) {
+  const error = new Error('Not Found');
+  (error as any).status = 404;
+  next(error);
+});
 app.use(errorMiddleware);
 
 // Running app on PORT

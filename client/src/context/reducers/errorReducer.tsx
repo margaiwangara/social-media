@@ -6,7 +6,7 @@ export default function(state = {}, action){
 			return { ...state, error: action.payload.error };
 			break;
 		case REMOVE_ERROR:
-			return { ...state, error: '' }
+			return { ...state, error: {} }
 			break;
 		default: 
 			return state;

@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { createContext } from 'react';
 
-const AppContext = useContext({
+const AppContext = createContext({
 	user: {},
-	error: ''
+	error: {}
 });
 
 export default AppContext;

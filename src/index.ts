@@ -17,6 +17,7 @@ app.use('/api/auth', authRoutes);
 
 // Error Handling
 app.use(function(req: Request, res: Response, next: NextFunction) {
+  console.log(req.headers.authorization);
   const error = new Error('Not Found');
   (error as any).status = 404;
   next(error);

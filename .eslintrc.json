@@ -22,7 +22,9 @@
     "no-console": "off",
     "@typescript-eslint/no-console": "off",
     "func-names": "off",
-    "@typescript/func-names": "off"
+    "@typescript/func-names": "off",
+    "no-useless-escape": "off",
+    "@typescript/no-useless-escape": "off"
   },
   "settings": {
     "import/resolver": {

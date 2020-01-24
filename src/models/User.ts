@@ -1,13 +1,7 @@
-import { Schema, Model, model, Document } from 'mongoose';
+import { Schema, Model, model } from 'mongoose';
+import IUserModel from '../interfaces/user';
 
-export interface IUserModel extends Document {
-  name: string;
-  surname?: string;
-  email: string;
-  password: string;
-}
-
-const userSchema = new Schema({
+const userSchema: Schema = new Schema({
   name: {
     type: String,
     required: [true, 'Name field is required'],

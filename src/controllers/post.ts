@@ -25,7 +25,7 @@ export const getPost = async (
   next: NextFunction
 ) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const post: IPostModel | null = await Post.findById(req.params.id);
     if (!post) return next(new HttpException(404, 'Post Not Found'));
     return res.status(200).json(post);
   } catch (error) {
@@ -70,10 +70,14 @@ export const updatePost = async (
     );
     if (!isOwned) return;
     // else update
-    const updatedPost = await Post.findByIdAndUpdate(postId, req.body, {
-      new: true,
-      runValidators: true
-    });
+    const updatedPost: IPostModel | null = await Post.findByIdAndUpdate(
+      postId,
+      req.body,
+      {
+        new: true,
+        runValidators: true
+      }
+    );
 
     return res.status(200).json(updatedPost);
   } catch (error) {
@@ -114,7 +118,7 @@ async function confirmPostOwner(
 ) {
   try {
     // check if user owns post
-    const post = await Post.findById(postId);
+    const post: IPostModel | null = await Post.findById(postId);
     if (!post) return next(new HttpException(404, 'Post Not Found'));
     // user owned
     if (post.user.toString() !== userId)

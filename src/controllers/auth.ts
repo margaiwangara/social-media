@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { User } from '../models';
 import HttpException from '../handlers/HttpException';
+import IUserModel from '../interfaces/user';
 
 export const registerUser = async (
   req: Request,
@@ -8,7 +9,7 @@ export const registerUser = async (
   next: NextFunction
 ) => {
   try {
-    const user = await User.create(req.body);
+    const user: IUserModel | null = await User.create(req.body);
     // return success with a jwt
     handleToken(user, 201, res);
   } catch (error) {
@@ -22,7 +23,9 @@ export const loginUser = async (
   next: NextFunction
 ) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email }).select('+password');
+  const user: IUserModel | null = await User.findOne({ email }).select(
+    '+password'
+  );
   // check if user exists
   if (!user) return next(new HttpException(401, 'Invalid credentials'));
   // check password

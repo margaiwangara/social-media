@@ -36,6 +36,7 @@ const userSchema: Schema = new Schema({
   }
 });
 
+// Presave Hash Password
 userSchema.pre('save', async function(next: HookNextFunction) {
   try {
     const password: string = this.get('password');
@@ -46,6 +47,22 @@ userSchema.pre('save', async function(next: HookNextFunction) {
     next(error);
   }
 });
+
+// Compare Password
+userSchema.methods.comparePassword = async function(
+  candidatePassword: string,
+  next: HookNextFunction
+) {
+  try {
+    const isMatch: boolean = await bcrypt.compare(
+      candidatePassword,
+      (this as any).password
+    );
+    return isMatch;
+  } catch (error) {
+    return next(error);
+  }
+};
 
 const User: Model<IUserModel> = model<IUserModel>('User', userSchema, 'users');
 

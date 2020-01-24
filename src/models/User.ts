@@ -1,4 +1,5 @@
 import * as bcrypt from 'bcryptjs';
+import * as jwt from 'jsonwebtoken';
 import { Schema, Model, model, HookNextFunction } from 'mongoose';
 import IUserModel from '../interfaces/user';
 
@@ -59,6 +60,19 @@ userSchema.methods.comparePassword = async function(
       (this as any).password
     );
     return isMatch;
+  } catch (error) {
+    return next(error);
+  }
+};
+
+userSchema.methods.generateJWToken = function(next: HookNextFunction) {
+  try {
+    const token: string = jwt.sign(
+      { email: this.email },
+      `${process.env.JWT_SECRET}`,
+      { expiresIn: process.env.JWT_EXPIRE }
+    );
+    return token;
   } catch (error) {
     return next(error);
   }

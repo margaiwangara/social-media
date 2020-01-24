@@ -9,9 +9,14 @@ export const registerUser = async (
 ) => {
   try {
     const user = await User.create(req.body);
-    return res.status(201).json(user);
+    // return success with a jwt
+    const token: string = (user as any).generateJWToken();
+    return res.status(201).json({
+      success: true,
+      token
+    });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 

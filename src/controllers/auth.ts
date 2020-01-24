@@ -10,11 +10,7 @@ export const registerUser = async (
   try {
     const user = await User.create(req.body);
     // return success with a jwt
-    const token: string = (user as any).generateJWToken();
-    return res.status(201).json({
-      success: true,
-      token
-    });
+    handleToken(user, 201, res);
   } catch (error) {
     return next(error);
   }
@@ -33,6 +29,14 @@ export const loginUser = async (
   const isMatch: boolean = await (user as any).comparePassword(password);
   // if password match
   if (!isMatch) return next(new HttpException(401, 'Invalid credentials'));
-  // log in user
-  return res.status(200).json(user);
+  // send success with token
+  handleToken(user, 200, res);
 };
+
+function handleToken(model: any, statusCode: number, res: Response) {
+  const token: string = model.generateJWToken();
+  return res.status(statusCode).json({
+    success: true,
+    token
+  });
+}

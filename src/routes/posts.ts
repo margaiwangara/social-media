@@ -6,18 +6,19 @@ import {
   updatePost,
   deletePost
 } from '../controllers/post';
+import { userAuthorized } from '../middleware/auth';
 
 const router: Router = Router();
 
 router
   .route('/')
-  .post(createPost)
+  .post(userAuthorized, createPost)
   .get(getPosts);
 
 router
   .route('/:id')
   .get(getPost)
-  .patch(updatePost)
-  .delete(deletePost);
+  .put(userAuthorized, updatePost)
+  .delete(userAuthorized, deletePost);
 
 export default router;

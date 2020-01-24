@@ -60,8 +60,15 @@ export const updatePost = async (
     // get user and post id
     const userId: string = (req as any).user._id;
     const postId: string = req.params.id;
+    const message = 'You are not authorized to update this post';
     // run ownership function
-    await confirmPostOwner(next, postId, userId);
+    const isOwned: boolean | void = await confirmPostOwner(
+      next,
+      postId,
+      userId,
+      message
+    );
+    if (!isOwned) return;
     // else update
     const updatedPost = await Post.findByIdAndUpdate(postId, req.body, {
       new: true,
@@ -83,8 +90,15 @@ export const deletePost = async (
     // get user and post id
     const userId: string = (req as any).user._id;
     const postId: string = req.params.id;
+    const message = 'You are not authorized to delete this post';
     // post ownership
-    await confirmPostOwner(next, postId, userId);
+    const isOwned: boolean | void = await confirmPostOwner(
+      next,
+      postId,
+      userId,
+      message
+    );
+    if (!isOwned) return;
     await Post.findByIdAndDelete(postId);
     return res.status(200).json({ success: true, data: {} });
   } catch (error) {
@@ -95,7 +109,8 @@ export const deletePost = async (
 async function confirmPostOwner(
   next: NextFunction,
   postId: string,
-  userId: string
+  userId: string,
+  message: string
 ) {
   try {
     // check if user owns post
@@ -103,9 +118,8 @@ async function confirmPostOwner(
     if (!post) return next(new HttpException(404, 'Post Not Found'));
     // user owned
     if (post.user.toString() !== userId)
-      return next(
-        new HttpException(403, 'You are not authorized to update this post')
-      );
+      return next(new HttpException(403, message));
+    return true;
   } catch (error) {
     return next(error);
   }

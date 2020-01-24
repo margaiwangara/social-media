@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import * as path from 'path';
 import errorMiddleware from './middleware/errors';
 import authRoutes from './routes/auth';
+import postRoutes from './routes/posts';
 
 // dotenv config
 dotenv.config({ path: path.resolve(__dirname, '../config/config.env') });
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/posts', postRoutes);
 
 // Error Handling
 app.use(function(req: Request, res: Response, next: NextFunction) {

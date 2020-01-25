@@ -1,7 +1,10 @@
 import React, { createContext } from 'react';
 
 const AppContext = createContext({
-	user: {},
+	currentUser: {
+		isAuthenticated: false,
+		user: {}
+	},
 	error: {}
 });
 

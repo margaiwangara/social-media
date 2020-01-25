@@ -1,13 +1,13 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
-export default function(method: string, url: string, payload?: object){
+export default function(method: AxiosRequestConfig['method'], url: string, payload?: object){
 	return new Promise((resolve, reject) => {
 			axios({
 				method,
 				url,
 				data: payload
 			})
-			.then(({ data }) => resolve(data))
-			.catch(error => reject(error));
+			.then(res => resolve(res.data))
+			.catch(error => reject(error.reponse.data.error));
 	});
 }

@@ -13,7 +13,10 @@
     "ecmaVersion": 2018,
     "sourceType": "module",
     "project": "./tsconfig.json",
-    "tsconfigRootDir": "."
+    "tsconfigRootDir": ".",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "plugins": ["@typescript-eslint", "prettier", "react"],
   "rules": {
@@ -27,6 +30,12 @@
     "no-useless-escape": "off",
     "@typescript/no-useless-escape": "off"
   },
+  "overrides": [
+    {
+      "files": ["client/**/*.tsx"],
+      "rules": {}
+    }
+  ],
   "settings": {
     "import/resolver": {
       "node": {

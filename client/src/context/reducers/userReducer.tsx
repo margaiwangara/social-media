@@ -1,13 +1,12 @@
-import { REGISTER_USER, LOGOUT_USER } from '../types';
+import { SET_CURRENT_USER } from '../types';
 
-export default function(state, action){
-	switch(action.type){
-		case REGISTER_USER:
-			return { ...state, user: action.payload.user };
-			break;
-		case LOGOUT_USER: 
-			return { ...state, user: {} };
-			break;
+export default function(state: object, action: object){
+	switch((action as any).type){
+		case SET_CURRENT_USER:
+			return { ...state, user:{
+				isAuthenticated: !!Object.keys((action as any).payload.user).length,
+				user: (action as any).payload.user
+			}};
 		default:
 			return state;
 	}

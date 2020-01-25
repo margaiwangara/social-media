@@ -15,7 +15,7 @@ const initialState: object | any = {
   password: ''
 };
 
-export const useForm = (signUp: boolean) => {
+export const useForm = (signUp?: boolean) => {
   const [value, setValue] = useState(initialState);
   const [state, dispatch] = useReducer(userReducer, initialAppState);
 

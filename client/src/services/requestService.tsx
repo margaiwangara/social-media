@@ -1,13 +1,23 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-export const apiService =  function(method: AxiosRequestConfig['method'], url: string, payload?: object){
+interface ServerData{
+	data: object;
+	error?: object;
+}
+
+export const apiService = (method: AxiosRequestConfig['method'], path: string, data?: any) => {
 	return new Promise((resolve, reject) => {
-			axios({
-				method,
-				url,
-				data: payload
-			})
-			.then(res => resolve(res.data))
-			.catch(error => reject(error.reponse.data.error));
+		return axios.request({
+			method,
+			url: path,
+			data,
+			transformResponse: (r: ServerData) => r.data
+		})
+		.then(response => resolve(response.data))
+		.catch(error => {
+
+			console.log(error.response);
+			reject(error.response);
+		});
 	});
 }

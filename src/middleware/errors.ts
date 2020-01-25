@@ -22,8 +22,6 @@ function errorMiddleware(
       err = new HttpException(400, message);
       break;
     default:
-      message = 'Oops! Something went wrong';
-      err = new HttpException(500, message);
       break;
   }
   // Duplicate input error
@@ -31,10 +29,10 @@ function errorMiddleware(
     message = 'Duplicate Field Value Entered';
     err = new HttpException(400, message);
   }
-  console.log(process.env.NODE_ENV === 'development' && error);
-  return response.status(err.status).json({
+  console.log(process.env.NODE_ENV === 'development' && err);
+  return response.status(err.status || 500).json({
     error: {
-      message: err.message
+      message: err.message || 'Oops! Something went wrong'
     }
   });
 }

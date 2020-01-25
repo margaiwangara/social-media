@@ -10,10 +10,9 @@ export function setCurrentUser(user: object){
 
 export function authUser(type: string, userData: object, dispatch: Function){
   return new Promise((resolve, reject) => {
-    return apiService("POST", `/api/auth/${type}`, userData).then((response) => {
-      // localStorage.setItem("jwtToken", token);
-      console.log('My User', response);
-      dispatch(setCurrentUser({ user: { name: 'none'}}));
+    return apiService("POST", `/api/auth/${type}`, userData).then(({ token, user }: any) => {
+      localStorage.setItem("jwtToken", token);
+      dispatch(setCurrentUser(user));
       resolve();
     });
   });

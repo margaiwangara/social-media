@@ -3,12 +3,15 @@
     "eslint:recommended",
     "airbnb",
     "prettier",
-    "react-app",
+    "prettier/react",
     "prettier/@typescript-eslint",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:import/typescript",
+    "plugin:react/recommended"
   ],
   "parser": "@typescript-eslint/parser",
+  "root": true,
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
@@ -16,11 +19,16 @@
     "tsconfigRootDir": ".",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "useJSXTextNode": true
   },
-  "plugins": ["@typescript-eslint", "prettier", "react"],
+  "plugins": ["@typescript-eslint", "prettier", "jsx-a11y", "import", "react"],
   "rules": {
     "prettier/prettier": "error",
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": [".jsx", ".tsx"] }
+    ],
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "no-console": "off",
@@ -37,6 +45,9 @@
     }
   ],
   "settings": {
+    "react": {
+      "version": "detect"
+    },
     "import/resolver": {
       "node": {
         "extensions": [".js", ".ts", ".tsx", ".jsx"]

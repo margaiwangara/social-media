@@ -4,25 +4,6 @@ import HttpException from '../handlers/HttpException';
 import IUserModel from '../interfaces/user';
 import { User } from '../models';
 
-export const userAuthorized = async function(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    const { email } = verifyToken(req, next) as any;
-    // get user using email
-    const user: IUserModel | null = await User.findOne({ email });
-    // if user not found
-    if (!user) return next(new HttpException(403, 'Unauthorized Access'));
-    // else store in req
-    (req as any).user = user;
-    return next();
-  } catch (error) {
-    return next(error);
-  }
-};
-
 function verifyToken(req: Request, next: NextFunction) {
   try {
     const headers: string | undefined = req.headers.authorization;
@@ -43,3 +24,24 @@ function verifyToken(req: Request, next: NextFunction) {
     return next(error);
   }
 }
+
+const userAuthorized = async function(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { email } = verifyToken(req, next) as any;
+    // get user using email
+    const user: IUserModel | null = await User.findOne({ email });
+    // if user not found
+    if (!user) return next(new HttpException(403, 'Unauthorized Access'));
+    // else store in req
+    (req as any).user = user;
+    return next();
+  } catch (error) {
+    return next(error);
+  }
+};
+
+export default userAuthorized;

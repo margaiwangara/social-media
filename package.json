@@ -8,7 +8,7 @@
     "server": "nodemon src/index.ts",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "lint": "tsc --noEmit && eslint */**/*.{js,ts,tsx} --quiet --fix",
     "build": "tsc -p ."
   },
   "repository": {
@@ -49,6 +49,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-flowtype": "^4.6.0",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-node": "^11.0.0",

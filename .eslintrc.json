@@ -22,13 +22,14 @@
     },
     "useJSXTextNode": true
   },
-  "plugins": ["@typescript-eslint", "prettier", "jsx-a11y", "import", "react"],
+  "plugins": ["@typescript-eslint", "prettier", "jsx-a11y", "import"],
   "rules": {
     "prettier/prettier": "error",
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".jsx", ".tsx"] }
     ],
+    "consistent-return": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "no-console": "off",

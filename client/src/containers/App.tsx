@@ -10,7 +10,7 @@ const App: React.FC = () => {
       <div className="inner-container">
         <Route exact path="/" render={() => <h1>Home Route</h1>} />
         <Route exact path="/login" render={() => <h1>Login Route</h1>} />
-        <Route exact path="/register" render={() => <h1>Sign Up Route</h1>} />
+        <Route exact path="/signup" render={() => <h1>Sign Up Route</h1>} />
       </div>
       </div>
     </Router>

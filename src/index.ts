@@ -1,6 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
+import cors from 'cors';
 import errorMiddleware from './middleware/errors';
 import authRoutes from './routes/auth';
 import postRoutes from './routes/posts';
@@ -12,6 +13,7 @@ const app: Application = express();
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 // Routes
 app.use('/api/auth', authRoutes);

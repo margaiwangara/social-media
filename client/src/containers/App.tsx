@@ -1,11 +1,19 @@
 import React from 'react';
-import Register from '../components/Register';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-     <Register/>
-    </div>
+    <Router>
+      <div className="App">
+      <Navbar/>
+      <div className="inner-container">
+        <Route exact path="/" render={() => <h1>Home Route</h1>} />
+        <Route exact path="/login" render={() => <h1>Login Route</h1>} />
+        <Route exact path="/register" render={() => <h1>Sign Up Route</h1>} />
+      </div>
+      </div>
+    </Router>
   );
 }
 

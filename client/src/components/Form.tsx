@@ -2,10 +2,10 @@ import React, { Fragment } from 'react'
 import { useForm } from '../services/formHooks';
 
 function Form({ signUp }:any) {
-  const { handleChange, value } = useForm();
+  const { handleChange, value, handleSubmit } = useForm();
 
   return (
-    <form method="post">
+    <form method="post" onSubmit={handleSubmit as any}>
       {signUp && (
           <Fragment>
             <div className="form-group">

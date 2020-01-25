@@ -1,4 +1,12 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useReducer } from 'react';
+import { authUser } from '../context/actions/auth';
+import userReducer from '../context/reducers/userReducer';
+import { SET_CURRENT_USER } from '../context/types';
+
+const initialAppState = {
+  isAuthenticated: false,
+  user: {}
+}
 
 const initialState: object | any = {
   name: '',
@@ -7,8 +15,9 @@ const initialState: object | any = {
   password: ''
 };
 
-export const useForm = () => {
+export const useForm = (signUp: boolean) => {
   const [value, setValue] = useState(initialState);
+  const [state, dispatch] = useReducer(userReducer, initialAppState);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue({ ...value, [event.target.name]: event.target.value });
@@ -16,7 +25,8 @@ export const useForm = () => {
 
   const handleSubmit = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    
+    const authType: string = signUp ? "register" : "login";
+    authUser(authType, value, dispatch).then(() => console.log('Auth Happened'));
   }
 
   return {

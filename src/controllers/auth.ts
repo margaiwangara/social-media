@@ -6,11 +6,12 @@ import IUserModel from '../interfaces/user';
 function handleToken(model: any, statusCode: number, res: Response) {
   const token: string = model.generateJWToken();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { password, ...user } = model;
+  const user = model;
+  user.password = undefined;
   return res.status(statusCode).json({
     success: true,
     token,
-    ...user
+    user
   });
 }
 

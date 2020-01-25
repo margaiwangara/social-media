@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { useForm } from '../services/formHooks';
 
 function Form({ signUp }:any) {
-  const { handleChange, value, handleSubmit } = useForm();
+  const { handleChange, value, handleSubmit } = useForm(!!signUp);
 
   return (
     <form method="post" onSubmit={handleSubmit as any}>

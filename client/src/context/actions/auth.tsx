@@ -1,28 +1,19 @@
-import { useReducer } from 'react';
 import { apiService } from '../../services/requestService';
 import { SET_CURRENT_USER } from '../types';
-import userReducer from '../reducers/userReducer';
-
-const initialState = {
-  isAuthenticated: false,
-  user: {}
-}
 
 export function setCurrentUser(user: object){
   return {
     type: SET_CURRENT_USER,
-    payload: {
-      user
-    }
+    user
   }
 }
 
-export function authUser(type: string, data: object){
-  const [state, dispatch] = useReducer(userReducer, initialState);
+export function authUser(type: string, userData: object, dispatch: Function){
   return new Promise((resolve, reject) => {
-    return apiService("POST", `/api/${type}`, data).then(({ token, user }: any) => {
-      localStorage.setItem("jwtToken", token);
-      dispatch(setCurrentUser(user));
+    return apiService("POST", `/api/auth/${type}`, userData).then((response) => {
+      // localStorage.setItem("jwtToken", token);
+      console.log('My User', response);
+      dispatch(setCurrentUser({ user: { name: 'none'}}));
       resolve();
     });
   });

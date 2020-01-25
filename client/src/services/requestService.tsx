@@ -15,9 +15,8 @@ export const apiService = (method: AxiosRequestConfig['method'], path: string, d
 		})
 		.then(response => resolve(response.data))
 		.catch(error => {
-
-			console.log(error.response);
-			reject(error.response);
+			const customError = JSON.parse(`${error.response.request.response}`);
+			reject(customError.error);
 		});
 	});
 }

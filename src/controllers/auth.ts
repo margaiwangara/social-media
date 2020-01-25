@@ -3,6 +3,17 @@ import { User } from '../models';
 import HttpException from '../handlers/HttpException';
 import IUserModel from '../interfaces/user';
 
+function handleToken(model: any, statusCode: number, res: Response) {
+  const token: string = model.generateJWToken();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { password, ...user } = model;
+  return res.status(statusCode).json({
+    success: true,
+    token,
+    ...user
+  });
+}
+
 export const registerUser = async (
   req: Request,
   res: Response,
@@ -11,7 +22,7 @@ export const registerUser = async (
   try {
     const user: IUserModel | null = await User.create(req.body);
     // return success with a jwt
-    handleToken(user, 201, res);
+    return handleToken(user, 201, res);
   } catch (error) {
     return next(error);
   }
@@ -33,13 +44,5 @@ export const loginUser = async (
   // if password match
   if (!isMatch) return next(new HttpException(401, 'Invalid credentials'));
   // send success with token
-  handleToken(user, 200, res);
+  return handleToken(user, 200, res);
 };
-
-function handleToken(model: any, statusCode: number, res: Response) {
-  const token: string = model.generateJWToken();
-  return res.status(statusCode).json({
-    success: true,
-    token
-  });
-}

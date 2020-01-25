@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-export default function(method: AxiosRequestConfig['method'], url: string, payload?: object){
+export const apiService =  function(method: AxiosRequestConfig['method'], url: string, payload?: object){
 	return new Promise((resolve, reject) => {
 			axios({
 				method,

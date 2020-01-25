@@ -10,22 +10,22 @@ function Form({ signUp }:any) {
           <Fragment>
             <div className="form-group">
               <label htmlFor="nameField">Name</label>
-              <input type="text" name="name" id="nameField" onChange={handleChange} value={value.name}/>
+              <input type="text" className="form-control" name="name" id="nameField" onChange={handleChange} value={value.name}/>
             </div>
             <div className="form-group">
               <label htmlFor="surnameField">Surname</label>
-              <input type="text" name="surname" id="surnameField" onChange={handleChange} value={value.surname}/>
+              <input type="text" className="form-control" name="surname" id="surnameField" onChange={handleChange} value={value.surname}/>
             </div>
           </Fragment>
         )
       }
       <div className="form-group">
         <label htmlFor="emailField">Email</label>
-        <input type="email" name="email" id="emailField" onChange={handleChange} value={value.email}/>
+        <input type="email" className="form-control" name="email" id="emailField" onChange={handleChange} value={value.email}/>
       </div>
       <div className="form-group">
         <label htmlFor="passwordField">Password</label>
-        <input type="password" name="password" id="passwordField" onChange={handleChange} value={value.password}/>
+        <input type="password" className="form-control" name="password" id="passwordField" onChange={handleChange} value={value.password}/>
       </div>
     <button type="submit" className="btn btn-primary">{signUp ? 'Sign Up' : 'Log In'}</button>
     </form>

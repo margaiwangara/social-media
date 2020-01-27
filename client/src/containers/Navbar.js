@@ -3,7 +3,7 @@ import { AuthContext } from '../context/appContext';
 import { Link } from 'react-router-dom';
 
 function Navbar(){
-  const { state: { currentUser: { isAuthenticated }}} = useContext(AuthContext);
+  const { state: { authState: { currentUser: { isAuthenticated } }}} = useContext(AuthContext);
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
       <Link to="/" className="navbar-brand">Social Media</Link>

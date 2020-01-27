@@ -5,8 +5,7 @@ export const apiRequest = (method, path, payload) => {
     return axios[method](path, payload)
         .then(response => resolve(response.data))
         .catch(error => {
-          
           reject(error.response.data.error);
         });
-  })
+  });
 }

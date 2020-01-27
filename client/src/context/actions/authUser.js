@@ -15,6 +15,7 @@ export default function authUser(path, payload, dispatch){
             }
           );
           resolve();
-        });
+        })
+        .catch(error => console.log(error));
   })
 }

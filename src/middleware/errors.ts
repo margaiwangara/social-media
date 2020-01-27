@@ -25,7 +25,7 @@ function errorMiddleware(
       break;
   }
   // Duplicate input error
-  if (err.status === 11000) {
+  if ((err as any).code === 11000) {
     message = 'Duplicate Field Value Entered';
     err = new HttpException(400, message);
   }

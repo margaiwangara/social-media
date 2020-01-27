@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthForm from './AuthForm';
 
-const SignUp = () => <AuthForm signUp/>
+const LogIn = () => <AuthForm />
 
-export default SignUp;
+export default LogIn;

@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../context/appContext';
-import { SET_CURRENT_USER } from '../context/actionTypes';
 import authUser from '../context/actions/authUser';
 
 const initialState = {
@@ -21,13 +20,9 @@ function useAuthForm(signUp){
     event.preventDefault();
     // grab all data in value and add to db
     const path = signUp ? "register" : "login";
-    authUser(path, value);
-    dispatch({
-      type: SET_CURRENT_USER,
-      payload:{
-        user: { ...value }
-      }
-    });
+    authUser(path, value, dispatch);
+    // clean form
+    setValue(initialState);
   }
 
   return {

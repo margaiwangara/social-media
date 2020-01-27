@@ -21,6 +21,8 @@ function useAuthForm(signUp){
     // grab all data in value and add to db
     const path = signUp ? "register" : "login";
     authUser(path, value, dispatch);
+
+    
     // clean form
     setValue(initialState);
   }

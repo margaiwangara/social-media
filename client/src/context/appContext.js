@@ -17,7 +17,7 @@ export const AuthProvider = function({ children }){
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       <div>
-        { children}
+        { children }
       </div>
     </AuthContext.Provider>
   )

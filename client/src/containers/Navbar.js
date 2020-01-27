@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../context/appContext';
+import { Link } from 'react-router-dom';
 
 function Navbar(){
   const { state: { currentUser: { isAuthenticated }}} = useContext(AuthContext);
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
-      <a href="#home" className="navbar-brand">Social Media</a>
+      <Link to="/" className="navbar-brand">Social Media</Link>
 
       <button className="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
         <span className="navbar-toggler-icon"></span>
@@ -16,19 +17,19 @@ function Navbar(){
           {isAuthenticated? (
               <>
                 <li className="nav-item active">
-                  <a href="#home" className="nav-link">Home</a>
+                  <Link to="/" className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <a href="#signout" className="nav-link">Sign Out</a>
+                  <Link to="/logout" className="nav-link">Sign Out</Link>
                 </li>
               </>
             ):(
               <>
               <li className="nav-item">
-                <a href="#login" className="nav-link">Log In</a>
+                <Link to="/login" className="nav-link">Log In</Link>
                 </li>
               <li className="nav-item">
-                <a href="#signup" className="nav-link">Sign Up</a>
+                <Link to="/register" className="nav-link">Sign Up</Link>
               </li>
           </>
           )}

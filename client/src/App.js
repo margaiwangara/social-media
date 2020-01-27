@@ -1,11 +1,12 @@
 import React from 'react';
-import './App.css';
+import Navbar from './containers/Navbar';
 import { AuthProvider } from './context/appContext';
+import './App.css';
 
 function App() {
   return (
     <AuthProvider>
-      <p>This is my day</p>
+      <Navbar/>
     </AuthProvider>
   );
 }

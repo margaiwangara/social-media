@@ -2,7 +2,7 @@ import React from 'react';
 import authForm from '../functions/authFormHook';
 
 function AuthForm({ signUp }){
-  const { handleChange, value, handleSubmit } = authForm();
+  const { handleChange, value, handleSubmit } = authForm(signUp);
   return (
     <form method="post" onSubmit={handleSubmit}>
       {signUp && (

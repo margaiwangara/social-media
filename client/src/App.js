@@ -1,10 +1,12 @@
-import React from 'react';import './App.css';
+import React from 'react';
+import './App.css';
+import { AuthProvider } from './context/appContext';
 
 function App() {
   return (
-    <div className="App">
-      Create React App
-    </div>
+    <AuthProvider>
+      <p>This is my day</p>
+    </AuthProvider>
   );
 }
 

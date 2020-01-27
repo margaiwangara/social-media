@@ -8,7 +8,8 @@ const initialState = {
   email: '',
   password: ''
 }
-function useAuthForm(signUp){
+
+function useAuthForm(signUp, history){
   const [value, setValue] = useState(initialState);
   const { dispatch, state } = useContext(AuthContext);
 
@@ -20,13 +21,20 @@ function useAuthForm(signUp){
     event.preventDefault();
     // grab all data in value and add to db
     const path = signUp ? "register" : "login";
-    authUser(path, value, dispatch);
+    authUser(path, value, dispatch)
+        .then(() => {
+          // check if is authenticated
+          if(state.authState.currentUser.isAuthenticated)
+            history.push('/');
+          else
+            setValue({ ...value, password: '' });
+        })    
+        .catch(() => {
+          return;
+        })
 
     // if errors found don't clear form else clear form
-    if(!state.authState.currentUser.isAuthenticated)
-      setValue({ ...value, password: '' });
-    else
-      setValue(initialState);
+    
    
   }
 

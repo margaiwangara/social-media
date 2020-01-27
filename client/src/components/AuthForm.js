@@ -26,7 +26,7 @@ function AuthForm({ signUp }){
         <label htmlFor="passwordField">Password</label>
         <input type="password" className="form-control" name="password" id="passwordField" onChange={handleChange} value={value.password}/>
       </div>
-      <button type="submit" className="btn btn-primary">Register</button>
+      <button type="submit" className="btn btn-primary">{signUp ? "Register" : "Log In"}</button>
     </form>
   )
 }

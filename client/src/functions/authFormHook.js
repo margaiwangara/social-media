@@ -10,7 +10,7 @@ const initialState = {
 }
 function useAuthForm(signUp){
   const [value, setValue] = useState(initialState);
-  const { dispatch } = useContext(AuthContext);
+  const { dispatch, state } = useContext(AuthContext);
 
   const handleChange = (event) => {
     return setValue({ ...value, [event.target.name]: event.target.value });
@@ -22,9 +22,12 @@ function useAuthForm(signUp){
     const path = signUp ? "register" : "login";
     authUser(path, value, dispatch);
 
-    
-    // clean form
-    setValue(initialState);
+    // if errors found don't clear form else clear form
+    if(!state.authState.currentUser.isAuthenticated)
+      setValue({ ...value, password: '' });
+    else
+      setValue(initialState);
+   
   }
 
   return {

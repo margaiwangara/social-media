@@ -2,16 +2,23 @@ import React, { useContext } from 'react';
 import authForm from '../functions/authFormHook';
 import { withRouter } from 'react-router-dom';
 import { AuthContext } from '../context/appContext';
+import { removeError } from '../context/actions/error';
 
 function AuthForm({ signUp, history }) {
   const { handleChange, value, handleSubmit } = authForm(signUp, history);
-  const { state: { errorState } } = useContext(AuthContext);
+  const {
+    state: { errorState }
+  } = useContext(AuthContext);
+
+  // change in route
+  history.listen(() => {
+    removeError();
+  });
+
   return (
     <form method="post" onSubmit={handleSubmit}>
       {!!Object.keys(errorState.error).length && (
-        <div className="alert alert-danger">
-          {errorState.error.message}
-        </div>
+        <div className="alert alert-danger">{errorState.error.message}</div>
       )}
       {signUp && (
         <>

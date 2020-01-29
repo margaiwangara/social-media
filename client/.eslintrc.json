@@ -1,5 +1,5 @@
 {
   "extends": ["react-app"],
-  "plugins": ["react"],
+  "plugins": ["react", "prettier"],
   "rules": {}
 }

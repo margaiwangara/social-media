@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './containers/Navbar';
 import SignUp from './components/SignUp';
 import LogIn from './components/LogIn';
+import PrivateRoute from './containers/PrivateRoute';
 import { AuthProvider } from './context/appContext';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
@@ -12,7 +13,7 @@ function App() {
       <Router>
         <Navbar/>
         <div className="container py-3">
-          <Route exact path="/" component={() => <h3>Route to Home</h3>}/>
+          <PrivateRoute exact path="/" component={() => <p>This is my home</p>}/>
           <Route exact path="/login" component={LogIn}/>
           <Route exact path="/register" component={SignUp}/>
           <Route exact path="/logout" component={() => <h3>Route to Logout</h3>}/>

@@ -24,16 +24,11 @@ function useAuthForm(signUp, history){
     authUser(path, value, dispatch)
         .then(() => {
           // check if is authenticated
-          if(state.authState.currentUser.isAuthenticated)
-            history.push('/');
-          else
-            setValue({ ...value, password: '' });
+          console.log(state.authState);
         })    
         .catch(() => {
           return;
-        })
-
-    // if errors found don't clear form else clear form
+        });
     
    
   }

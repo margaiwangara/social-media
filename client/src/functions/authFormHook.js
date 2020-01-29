@@ -11,7 +11,7 @@ const initialState = {
 
 function useAuthForm(signUp, history){
   const [value, setValue] = useState(initialState);
-  const { dispatch, state } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
 
   const handleChange = (event) => {
     return setValue({ ...value, [event.target.name]: event.target.value });
@@ -23,8 +23,8 @@ function useAuthForm(signUp, history){
     const path = signUp ? "register" : "login";
     authUser(path, value, dispatch)
         .then(() => {
-          // check if is authenticated
-          console.log(state.authState);
+          // redirect to homepage
+          history.push("/");
         })    
         .catch(() => {
           return;
